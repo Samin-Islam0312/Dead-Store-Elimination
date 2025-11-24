@@ -32,7 +32,7 @@ Analyzing function: demo
 BasicBlock: 
   1 = MemoryDef(liveOnEntry)
   2 = MemoryDef(1)
-
+```
 ```bash
 opt -load-pass-plugin dylibs/libMemorySSADemo.dylib \
     -passes=mem2reg,memssa-demo \
