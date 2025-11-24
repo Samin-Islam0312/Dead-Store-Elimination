@@ -111,6 +111,7 @@ opt -passes=mem2reg irFiles/array_loop1.ll -S -o irFiles/array_loop1_simplified.
 clang++ -std=c++17 -fPIC -shared MemorySSAGraph.cpp -o dylibs/libMemorySSAGdylib \
 $(llvm-config --cxxflags --ldflags --system-libs --libs core analysis passes)
 ```
+
 ```bash
 opt -load-pass-plugin dylibs/libMemorySSAGdylib \
     -passes=memssa-demo \
@@ -159,15 +160,15 @@ dot -Tpdf mssa_branch_example.dot -o graphs/mssa_branch_example.pdf
 Implemented the lecture DSE algorithm using MemorySSA; restricted MustAlias to Ptr == PrevPtr and only considered same-basic-block stores, 
 which makes post-dominance trivial. Intervening uses are checked by scanning between the two stores in that block for loads from the same pointer.
 
-``bash
+```bash
 clang++ -std=c++17 -fPIC -shared DeadStoreElimination/DeadStoreE.cpp -o dylibs/libMemorySSADSE.dylib \
 $(llvm-config --cxxflags --ldflags --system-libs --libs core analysis passes)
 ```
 
-##Compiling the test cases which is in the `tests/mayAnalysis` and `tests/mustAnalysis` directories. The IR files are kept in `irFiles` folder in each of the 
+## Compiling the test cases which is in the `tests/mayAnalysis` and `tests/mustAnalysis` directories. The IR files are kept in `irFiles` folder in each of the 
 may and must analysis folder in the `tests` directory
 
-###May Analysis
+### May Analysis
 ```bash
 clang -O0 -Xclang -disable-O0-optnone -S -emit-llvm tests/task5_tests/mayAnalysis/test1.c -o tests/task5_tests/mayAnalysis/irFiles/test1.ll 
 ```
