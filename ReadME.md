@@ -26,32 +26,32 @@ opt -load-pass-plugin dylibs/libMemorySSADemo.dylib \
 irFiles/demo1.ll \
 -disable-output
 ```
-```bash 
+
 Analyzing function: demo
 BasicBlock: 
   1 = MemoryDef(liveOnEntry)
   2 = MemoryDef(1)
-```
+
 ```bash
 opt -load-pass-plugin dylibs/libMemorySSADemo.dylib \
     -passes=mem2reg,memssa-demo \
     irFiles/demo2.ll \
     -disable-output
 ```
-```bash
+
 Analyzing function: demo
 BasicBlock: 
   1 = MemoryDef(liveOnEntry)
   2 = MemoryDef(1)
   MemoryUse(2)
-```
+
 ```bash 
 opt -load-pass-plugin dylibs/libMemorySSADemo.dylib \
     -passes=mem2reg,memssa-demo \
     irFiles/array_loop1.ll \
     -disable-output
 ```
-```bash
+
 Analyzing function: array_loop
 BasicBlock: 
 BasicBlock: 
@@ -65,14 +65,14 @@ BasicBlock:
   2 = MemoryDef(1)
 BasicBlock: 
 BasicBlock: 
-```
+
 ```bash
 opt -load-pass-plugin dylibs/libMemorySSADemo.dylib \
     -passes=mem2reg,memssa-demo \
     irFiles/branch_example.ll \
     -disable-output
 ```
-```bash
+
 Analyzing function: branch_example
 BasicBlock: 
   1 = MemoryDef(liveOnEntry)
@@ -86,7 +86,7 @@ BasicBlock:
     from : 3 = MemoryDef(1)
   MemoryUse(5)
   4 = MemoryDef(5)
-```
+
 ```bash
 opt -passes=mem2reg irFiles/demo1.ll -S -o irFiles/demo1_simplified.ll
 
